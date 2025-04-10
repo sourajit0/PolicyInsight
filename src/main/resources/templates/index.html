@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyInsight - Insurance Policy Analyzer</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>PolicyInsight</h1>
+        <p>Upload your insurance policy document and get a detailed analysis</p>
+    </header>
+
+    <main>
+        <div class="upload-section">
+            <div class="card">
+                <h2>Upload Policy Document</h2>
+                <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+                <form action="/analyze" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="pdfFile">Select PDF File:</label>
+                        <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Analyze Document</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="card">
+                <h2>How It Works</h2>
+                <ol>
+                    <li>Upload your insurance policy document (PDF format)</li>
+                    <li>Our system extracts key policy details using AI</li>
+                    <li>Review the summarized information in an easy-to-read format</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PolicyInsight | TCS Intern Project</p>
+    </footer>
+</div>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

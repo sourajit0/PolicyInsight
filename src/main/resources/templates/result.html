@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyInsight - Analysis Results</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>PolicyInsight</h1>
+        <p>Insurance Policy Analysis Results</p>
+    </header>
+
+    <main>
+        <div class="result-section">
+            <div class="card">
+                <div class="result-header">
+                    <h2>Analysis Results</h2>
+                    <p class="file-info">Document: <span th:text="${fileName}">policy.pdf</span></p>
+                    <div class="actions">
+                        <a href="/" class="btn-secondary">Upload Another Document</a>
+                        <button onclick="window.print()" class="btn-primary">Print Results</button>
+                    </div>
+                </div>
+
+                <div class="policy-table-container">
+                    <div th:utext="${policyTable}" class="policy-table"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PolicyInsight | TCS Intern Project</p>
+    </footer>
+</div>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
