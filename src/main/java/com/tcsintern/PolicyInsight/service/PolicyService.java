@@ -21,11 +21,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Base64;
 
+import org.springframework.beans.factory.annotation.Value;
 @Service
 public class PolicyService {
 
     @Autowired
     private ApiConfig apiConfig;
+
+    @Value("${prompt.text}")
+    private String promptText;
 
     public PolicyResponse processPolicyDocument(MultipartFile pdfFile) {
         try {
@@ -56,18 +60,7 @@ public class PolicyService {
 
         // Add text instruction part
         JsonObject textPart = new JsonObject();
-        textPart.addProperty("text", "Extract the key details from this insurance policy PDF and return the result as an HTML table. The table should contain fields like:\n\n" +
-                "- Product Name\n" +
-                "- Insurance Company Name\n" +
-                "- Type of Plan\n" +
-                "- Eligibility\n" +
-                "- Sum Insured\n" +
-                "- Coverages\n" +
-                "- Exclusions\n" +
-                "- Policy Tenure\n" +
-                "- Claim Process\n" +
-                "- Premium Info\n\n" +
-                "Ensure the output is in proper HTML <table> format with headings in <th> and data in <td>. Return only the HTML table, nothing else.");
+        textPart.addProperty("text", promptText);
         parts.add(textPart);
 
         // Add PDF part
